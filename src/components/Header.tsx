@@ -5,7 +5,7 @@ export function Header() {
                 <img
                     src="//cdn.worldvectorlogo.com/logos/mundial-2026-world-cup.svg"
                     alt="Fida World Cup 2026 - United States, Canada and Mexico"
-                    className="h-60"
+                    className="h-50"
                 />
             </figure>
         </header>
