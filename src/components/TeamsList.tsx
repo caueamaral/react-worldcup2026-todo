@@ -59,7 +59,7 @@ export function TeamsList({ teams, setTeams }: TeamsProps) {
                         )}
 
                         <span className="flex gap-3">
-                            {editingTeamId === team.id && (
+                            {editingTeamId === team.id && editingName != team.name &&(
                                 <button
                                     type="button"
                                     aria-label={`Edit confirm ${team.name}`}
