@@ -1,5 +1,3 @@
-import { useState } from "react"
-
 type Team = {
     id: string,
     name: string
@@ -8,11 +6,11 @@ type Team = {
 type TeamsFormProps = {
     teams: Team[],
     setTeams: React.Dispatch<React.SetStateAction<Team[]>>
+    inputTeam: string,
+    setInputTeam: React.Dispatch<React.SetStateAction<string>>
 }
 
-export function TeamsForm({ teams, setTeams }: TeamsFormProps ) {
-    const [inputTeam, setInputTeam] = useState<string>('')
-
+export function TeamsForm({ teams, setTeams, inputTeam, setInputTeam }: TeamsFormProps ) {
     function formHandle(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 

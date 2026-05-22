@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 type Team = {
     id: string,
     name: string
@@ -9,37 +11,66 @@ type TeamsProps = {
 }
 
 export function TeamsList({ teams, setTeams }: TeamsProps) {
+    const [editingTeamId, setEditingTeamId] = useState<string | null>(null)
+    const [editingName, setEditingName] = useState('')
+    
     function editHandle(id: string, name: string) {
-        const newName = prompt(`Edit team name ${name}`, name)
+        setEditingTeamId(id)
+        setEditingName(name)
+    }
 
-        if (newName === null) return
-        if (newName.trim() === '') return
+    function saveEditHandle() {
 
         setTeams(currentTeams =>
             currentTeams.map(team =>
-                team.id === id
-                    ? { ...team, name: newName.trim() }
+                team.id === editingTeamId
+                    ? { ...team, name: editingName.trim() }
                     : team
             )
         )
+
+        setEditingTeamId(null)
+        setEditingName('')
     }
 
     function deleteHandle(id: string) {
         setTeams(curr => curr.filter(team => team.id !== id))
     }
 
-    return (
+    return (        
         <ul className="flex flex-col mt-20 gap-5">
             {
                 teams.map(team => (
                     <li
                         key={team.id}
-                        className="bg-gray-200 flex justify-between py-3 px-4 rounded-md"
+                        className="bg-gray-200 flex justify-between p-3 rounded-md relative"
                     >
-                        <span>
-                            {team.name}
-                        </span>
+                        {editingTeamId === team.id ? (
+                            <input
+                                type="text"
+                                value={editingName}
+                                onChange={event => setEditingName(event.target.value)}
+                                className="border border-blue-500 py-1 px-2 rounded w-60"
+                            />
+                        ) : (
+                            <span className="border border-transparent py-1 px-2">
+                                {team.name}
+                            </span>
+                        )}
+
                         <span className="flex gap-3">
+                            {editingTeamId === team.id && (
+                                <button
+                                    type="button"
+                                    aria-label={`Edit confirm ${team.name}`}
+                                    className="cursor-pointer text-green-700"
+                                    onClick={saveEditHandle}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                </button>
+                            )}
                             <button
                                 type="button"
                                 className="text-blue-600 cursor-pointer"  
