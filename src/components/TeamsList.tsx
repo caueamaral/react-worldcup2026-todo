@@ -49,23 +49,24 @@ export function TeamsList({ teams, setTeams }: TeamsProps) {
         setTimeout(() => {
             setTeams(curr => curr.filter(team => team.id !== id))
             setDeletingTeamId(null)
-        }, 250)
+        }, 300)
     }
 
     return (
         <ul className="flex flex-col mt-20 gap-5">
             {
-                teams.map(team => {
+                teams.map((team, index) => {
                     const isDeleting = deletingTeamId === team.id
 
                     return (
                         <li
                             key={team.id}
+                            style={{ animationDelay: `${index * 100}ms` }}
                             className={`
                                 bg-gray-200 flex justify-between p-3 rounded-md relative
                                 ${isDeleting
                                     ? 'animate-[slide-out-left_250ms_ease-in_forwards]'
-                                    : 'animate-[slide-in-left_300ms_ease-out]'
+                                    : 'animate-[slide-in-left_300ms_ease-out_backwards]'
                                 }
                             `}
                         >
