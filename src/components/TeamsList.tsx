@@ -53,7 +53,7 @@ export function TeamsList({ teams, setTeams }: TeamsProps) {
         setTimeout(() => {
             setTeams(curr => curr.filter(team => team.id !== id))
             setDeletingTeamId(null)
-        }, 400)
+        }, 500)
     }
 
     return (

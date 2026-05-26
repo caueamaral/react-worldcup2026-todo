@@ -22,13 +22,17 @@ export function TeamsForm({ teams, setTeams, inputTeam, setInputTeam }: TeamsFor
     function formHandle(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        if (inputTeam.trim() === '') return
+        const newTeamName = inputTeam.trim()
+        if (newTeamName === '') return
+
+        const teamAlreadyExist = teams.some(team => team.name === newTeamName)
+        if (teamAlreadyExist) return alert(`${newTeamName} already exist.`)
 
         setTeams(currTeams => [
             ...currTeams,
             {
                 id: crypto.randomUUID(),
-                name: inputTeam.trim()
+                name: newTeamName
             }
         ])
         
