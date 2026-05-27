@@ -1,7 +1,7 @@
 React World Cup themed todo team list.
-[See the project](https://caueamaral.github.io/react-worldcup2026-todo).
+[See the project](https://caueamaral.github.io/react-wc2026-todo).
 
-<img src="src/images/react-worldcup2026-todo.jpg" alt=" World Cup themed todo in React.js">
+<img src="src/images/react-wc2026-todo.jpg" alt=" World Cup themed todo in React.js">
 
 ## React
 
@@ -17,7 +17,7 @@ Use Node `v24.15.0` for better compatibility.
 1 - Clone the repository.
 
 ```sh
-git clone https://github.com/caueamaral/react-worldcup2026-todo.git
+git clone https://github.com/caueamaral/react-wc2026-todo.git
 ```
 
 2 - Install the dependencies.
